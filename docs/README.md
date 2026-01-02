@@ -7,3 +7,7 @@ You can rotate left or right
 There are obstacles you have to dodge
 If you hit an obstacle you lose
 ```
+## Planned Code Structure
+- `Player` class that inherits from Sprite which represents the Player's fall, strafe, and rotate speed 
+- `Obstacle` class that inherits from Sprite which represents the Obstacle's damage and rise speed
+- `EventHandler` class that handles the events 
