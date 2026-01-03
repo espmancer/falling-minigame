@@ -11,3 +11,4 @@ If you hit an obstacle you lose
 - `Player` class that inherits from Sprite which represents the Player's attributes
 - `Obstacle` class that inherits from Sprite which represents the Obstacle's attributes
 - `EventHandler` class that handles the events 
+- `Score` class that represents and handles all points.
