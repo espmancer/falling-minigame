@@ -27,6 +27,18 @@ class Player(pygame.sprite.Sprite):
     def getPosition(self) -> tuple:
         return (self.rect.x, self.rect.y)
 
+    # Get the fall speed of the player.
+    def getFallSpeed(self) -> float:
+        return self.fallSpeed
+
+    # Get the strafe speed of the player.
+    def getStrafeSpeed(self) -> float:
+        return self.strafeSpeed
+
+    # Get the rotate speed of the player.
+    def getRotateSpeed(self) -> float:
+        return self.rotateSpeed
+
     # Set the health of the player.
     def setHealth(self, health):
         self.health = health
