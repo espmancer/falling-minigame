@@ -27,29 +27,47 @@ class EventHandler():
         running = True
 
         while running:
-            # Make the player fall.
+            # Adjust the player's current X and Y.
             newX = self.playerObject.getPosition()[0]
             newY = self.playerObject.getPosition()[1] + 1 * self.speedIncrease
-            newPosition = (newX, newY)
 
-            self.playerObject.setPosition(newPosition)
             # Poll through all generated events.
             for event in pygame.event.get():
                 # Did the player close the window?
                 if event.type == pygame.QUIT:
                     running = False
+
+            # Did the player press a key?
+            keys = pygame.key.get_pressed()
+        
+            if keys[pygame.K_a]:
+                newX -= self.playerObject.getStrafeSpeed()
+            if keys[pygame.K_d]:
+                newX += self.playerObject.getStrafeSpeed()
+            if keys[pygame.K_w]:
+                slowdownAmount = (self.playerObject.getFallSpeed() / self.speedIncrease)
+                slowdownAmount -= 1
+                newY -= slowdownAmount
+            if keys[pygame.K_s]:
+                newY += self.playerObject.getFallSpeed() * self.speedIncrease
+
             # Did the player reach the bottom border of the window?
             if self.playerObject.getPosition()[1] >= HEIGHT:
                 self.playerObject.setPosition((newX,0))
 
+            # Set the position of the player.
+            newPosition = (newX, newY)
+            self.playerObject.setPosition(newPosition)
+            self.speedIncrease += .01
+            
             # Draw all objects.
             screen.fill(self.backgroundObject.getBackground())
             screen.blit(self.playerObject.image, self.playerObject.rect)
-            self.speedIncrease += 1
             # Flip the display.
             pygame.display.flip()
             
             self.clock.tick(60)
+            print(f"FPS: {self.clock.get_fps(): .2f} Player Position: ({newX: .2f},{newY: .2f})")
 
         pygame.quit()
       
