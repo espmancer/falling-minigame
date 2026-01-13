@@ -13,7 +13,7 @@ class EventHandler():
         
         # Declare objects
         self.obstacleObject = Obstacle(1, 1)
-        self.playerObject = Player(1,1,1,1)
+        self.playerObject = Player(1,5,5,5)
         # Define a light blue background.
         backgroundColor = (144,213,255)
         self.backgroundObject = Background(backgroundColor)
@@ -52,8 +52,8 @@ class EventHandler():
                 newY += self.playerObject.getFallSpeed() * self.speedIncrease
 
             # Did the player reach the bottom border of the window?
-            if self.playerObject.getPosition()[1] >= HEIGHT:
-                self.playerObject.setPosition((newX,0))
+            if newY >= HEIGHT:
+                newY = 0
 
             # Set the position of the player.
             newPosition = (newX, newY)
@@ -67,7 +67,7 @@ class EventHandler():
             pygame.display.flip()
             
             self.clock.tick(60)
-            print(f"FPS: {self.clock.get_fps(): .2f} Player Position: ({newX: .2f},{newY: .2f})")
+            # print(f"FPS: {self.clock.get_fps(): .2f} Y >= HEIGHT: {newY: .2f} >= {HEIGHT}: {newY >= HEIGHT} ")
 
         pygame.quit()
       
